@@ -1,0 +1,8 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["real: requires installed local models (never mocks)"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 110

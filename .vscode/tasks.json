@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "NEUAURA: Start app and AI",
+      "type": "process",
+      "command": "/Users/mukkararamesh/Documents/ChatGPT/neuaurab2b/.venv/bin/python",
+      "args": [
+        "scripts/desktop.py",
+        "start"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NEUAURA: Stop app and AI",
+      "type": "process",
+      "command": "/Users/mukkararamesh/Documents/ChatGPT/neuaurab2b/.venv/bin/python",
+      "args": [
+        "scripts/desktop.py",
+        "stop"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NEUAURA: Run automated tests",
+      "type": "shell",
+      "command": "./scripts/test.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

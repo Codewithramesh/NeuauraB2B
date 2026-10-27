@@ -1,0 +1,194 @@
+{
+  "$defs": {
+    "ActionInput": {
+      "additionalProperties": false,
+      "properties": {
+        "insight_index": {
+          "minimum": 0,
+          "title": "Insight Index",
+          "type": "integer"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 3,
+          "title": "Description",
+          "type": "string"
+        },
+        "priority": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Priority",
+          "type": "string"
+        }
+      },
+      "required": [
+        "insight_index",
+        "description",
+        "priority"
+      ],
+      "title": "ActionInput",
+      "type": "object"
+    },
+    "EvidenceInput": {
+      "additionalProperties": false,
+      "properties": {
+        "quote": {
+          "maxLength": 3000,
+          "minLength": 3,
+          "title": "Quote",
+          "type": "string"
+        },
+        "segment_index": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Segment Index"
+        }
+      },
+      "required": [
+        "quote"
+      ],
+      "title": "EvidenceInput",
+      "type": "object"
+    },
+    "InsightInput": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "maxLength": 80,
+          "minLength": 2,
+          "title": "Category",
+          "type": "string"
+        },
+        "topic": {
+          "maxLength": 120,
+          "minLength": 2,
+          "title": "Topic",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 180,
+          "minLength": 3,
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 3,
+          "title": "Description",
+          "type": "string"
+        },
+        "sentiment": {
+          "enum": [
+            "positive",
+            "negative",
+            "neutral"
+          ],
+          "title": "Sentiment",
+          "type": "string"
+        },
+        "basis": {
+          "enum": [
+            "stated",
+            "inferred"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "uncertainty": {
+          "maxLength": 1000,
+          "title": "Uncertainty",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/EvidenceInput"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "category",
+        "topic",
+        "title",
+        "description",
+        "sentiment",
+        "basis",
+        "confidence",
+        "uncertainty",
+        "evidence"
+      ],
+      "title": "InsightInput",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "maxLength": 3000,
+      "minLength": 3,
+      "title": "Summary",
+      "type": "string"
+    },
+    "topics": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Topics",
+      "type": "array"
+    },
+    "entities": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Entities",
+      "type": "array"
+    },
+    "insights": {
+      "items": {
+        "$ref": "#/$defs/InsightInput"
+      },
+      "maxItems": 50,
+      "title": "Insights",
+      "type": "array"
+    },
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/ActionInput"
+      },
+      "maxItems": 30,
+      "title": "Actions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "topics",
+    "entities",
+    "insights",
+    "actions"
+  ],
+  "title": "Extraction",
+  "type": "object"
+}
